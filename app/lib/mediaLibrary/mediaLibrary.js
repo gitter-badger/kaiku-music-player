@@ -123,7 +123,7 @@ var songInc = 1
  * @param  {Function} next     Must be called to process next song, when done
  */
 function saveToLibrary (metadata, next) {
-  const artistName = metadata.artist[0] || 'unknown'
+  const artistName = metadata.artist || 'unknown'
   const albumTitle = metadata.album || 'unknown'
   var artist = scanTree[artistName]
 
@@ -143,7 +143,7 @@ function saveToLibrary (metadata, next) {
       title: albumTitle,
       artistID: artist._id,
       cover: null, // we will load covers later
-      year: metadata.year
+      year: metadata.year || null
     }
     library._albums.push(album)
     albumInc++
